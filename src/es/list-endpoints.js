@@ -1,0 +1,21 @@
+const AWS = require('aws-sdk')
+const logger = require('../util/logger')
+const program = require('commander')
+
+program.parse(process.argv)
+
+const main = async (endpoint) => {
+    const es = new AWS.ES({ region: 'us-east-1' })
+
+    const { DomainNames } = await es.listDomainNames().promise()
+    const unpackedDomainNames = DomainNames.map((name) => name.DomainName)
+    const domainsDescriptions = await es.describeElasticsearchDomains({ DomainNames: unpackedDomainNames }).promise()
+
+    const endpoints = domainsDescriptions.DomainStatusList.map((domain) => {
+        return domain.Endpoints.vpc
+    })
+
+    logger.log(JSON.stringify(endpoints, null, 4))
+}
+
+main(program.endpoint)
