@@ -1,10 +1,7 @@
 const AWS = require('aws-sdk')
 const logger = require('../util/logger')
-const program = require('commander')
 
-program.parse(process.argv)
-
-const main = async (endpoint) => {
+const main = async () => {
     const es = new AWS.ES({ region: 'us-east-1' })
 
     const { DomainNames } = await es.listDomainNames().promise()
@@ -18,4 +15,3 @@ const main = async (endpoint) => {
     logger.log(JSON.stringify(endpoints, null, 4))
 }
 
-main(program.endpoint)
