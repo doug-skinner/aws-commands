@@ -59,3 +59,13 @@ awsCommands es update-mapping --endpoint <endpoint> --index <index> --mappingFil
 ```
 
 This command makes an update to the specified endpoint and index to add new fields to the document mapping that exists for that endpoint. The `mappingFile` argument must be a json file that conforms to the specification outlined on the [Put mapping API](https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-put-mapping.html) page.
+
+### Service: AWS SQS
+
+#### Command: Move
+
+```bash
+awsCommands sqs move --from <queueUrl> --to <queueUrl>
+```
+
+This command moves messages from one queue to another
