@@ -15,3 +15,4 @@ const main = async () => {
 	logger.log(JSON.stringify(endpoints, null, 4))
 }
 
+main()
