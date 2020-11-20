@@ -3,7 +3,7 @@ const AWS = require('aws-sdk')
 const logger = require('../util/logger')
 const program = require('commander')
 
-const { openFile } = require('../util/openFile')
+
 
 program
 	.option('-e, --endpoint <endpoint>', 'the endpoint to run this command against')
