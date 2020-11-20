@@ -27,11 +27,10 @@ const getMessages = async (queueName) => {
 const sendMessage = async (queueName, message) => {
     const sqs = getSqs()
 
-    const { Attributes: attributes, Body: body } = message
+    const { Body: body } = message
     const params = {
         QueueUrl: queueName,
         MessageBody: body,
-        //MessageAttributes: attributes,
     }
     return sqs.sendMessage(params).promise()
 }

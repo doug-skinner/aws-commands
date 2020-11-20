@@ -1,4 +1,3 @@
-const logger = require('../util/logger')
 const program = require('commander')
 const sqsWrapper = require('../services/sqs')
 
