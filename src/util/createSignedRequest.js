@@ -4,29 +4,29 @@ const aws4 = require('aws4')
 const { accessKeyId, secretAccessKey, sessionToken } = new AWS.SharedIniFileCredentials()
 
 const creds = {
-    accessKeyId,
-    secretAccessKey,
-    sessionToken,
+	accessKeyId,
+	secretAccessKey,
+	sessionToken,
 }
 
 const createSignedRequest = ({ host, path, url, method, body }) => {
-    const options = {
-        host,
-        path,
-        method,
-        url,
-    }
+	const options = {
+		host,
+		path,
+		method,
+		url,
+	}
 
-    if (method === 'POST' || method === 'PUT') {
-        options.headers = {
-            'presigned-expires': false,
-            'Content-Type': 'application/json',
-        }
-        options.data = body
-        options.body = JSON.stringify(body)
-    }
+	if (method === 'POST' || method === 'PUT') {
+		options.headers = {
+			'presigned-expires': false,
+			'Content-Type': 'application/json',
+		}
+		options.data = body
+		options.body = JSON.stringify(body)
+	}
 
-    return aws4.sign(options, creds)
+	return aws4.sign(options, creds)
 }
 
 module.exports = { createSignedRequest }

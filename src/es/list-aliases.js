@@ -8,17 +8,17 @@ program.option('-e, --endpoint <endpoint>', 'the endpoint to run this command ag
 const { createSignedRequest } = require('../util/createSignedRequest')
 
 const main = async (endpoint) => {
-    const esEndpoint = new AWS.Endpoint(endpoint)
+	const esEndpoint = new AWS.Endpoint(endpoint)
 
-    const signedRequest = createSignedRequest({
-        host: esEndpoint.host,
-        path: '/_cat/aliases',
-        url: `${esEndpoint.href}_cat/aliases`,
-        method: 'GET',
-    })
+	const signedRequest = createSignedRequest({
+		host: esEndpoint.host,
+		path: '/_cat/aliases',
+		url: `${esEndpoint.href}_cat/aliases`,
+		method: 'GET',
+	})
 
-    const { data } = await axios(signedRequest)
-    logger.log(data)
+	const { data } = await axios(signedRequest)
+	logger.log(data)
 }
 
 main(program.endpoint)
